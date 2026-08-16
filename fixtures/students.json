@@ -1,0 +1,16 @@
+[
+  {
+    "id": "T001",
+    "name": "张敏",
+    "homework1": 88,
+    "homework2": 91,
+    "final_exam": 94
+  },
+  {
+    "id": "T002",
+    "name": "李强",
+    "homework1": 76,
+    "homework2": 84,
+    "final_exam": 80
+  }
+]
