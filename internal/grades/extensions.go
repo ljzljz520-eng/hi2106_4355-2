@@ -20,5 +20,8 @@ func NewExtensionExecutor(extensions Extensions) ExtensionExecutor {
 }
 
 func (e ExtensionExecutor) ExecuteAfterSubmit(result SubmissionResult) {
+	if e.extensions.AfterSubmit == nil {
+		return
+	}
 	e.extensions.AfterSubmit(result)
 }

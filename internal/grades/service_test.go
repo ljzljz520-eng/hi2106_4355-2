@@ -65,6 +65,22 @@ func TestServiceLifecycle(t *testing.T) {
 	}
 }
 
+func TestServiceSubmitWithoutAfterSubmitCallback(t *testing.T) {
+	service := grades.NewService(grades.NewMemoryStore())
+	student := grades.Student{ID: "T003", Name: "王芳", Homework1: 88, Homework2: 89, FinalExam: 90}
+
+	result, err := service.Submit(student)
+	if err != nil {
+		t.Fatalf("Submit() error = %v", err)
+	}
+	if result.Student != student {
+		t.Fatalf("Submit() student = %#v, want %#v", result.Student, student)
+	}
+	if result.Average != "89.00" {
+		t.Fatalf("Submit() average = %s, want 89.00", result.Average)
+	}
+}
+
 func TestServiceRejectsInvalidAndDuplicateRecords(t *testing.T) {
 	service := grades.NewService(grades.NewMemoryStore(), grades.WithAfterSubmit(func(grades.SubmissionResult) {}))
 	invalid := grades.Student{ID: "T001", Name: "周宁", Homework1: 101, Homework2: 80, FinalExam: 90}
